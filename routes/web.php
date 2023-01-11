@@ -1,5 +1,6 @@
 <?php
-use App\Http\Controllers\Admin\index;
+use App\Http\Controllers\Site\SiteController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,15 +12,22 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
 
 Route::get('/', function () {
     return view('frontend.layouts.master');//frontend
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('index');//backend
+
+
+Route::get(url('admin/dashboard'), action: AdminController::class, 'index');*/
+
+
+Route::controller(SiteController::class)->group(function(){
+    Route::get('/', 'home');
 });
 
-
-//Route::get(url('admin/dashboard'), action: AdminController::class, 'index');
+Route::group(['prefix' => 'admin/dashboard'], function(){
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/', 'dashboard');
+    });
+});
