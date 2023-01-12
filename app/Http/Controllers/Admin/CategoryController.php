@@ -11,7 +11,8 @@ class CategoryController extends Controller
     public function index()
     
     {
-        return view('categories.index');
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -24,7 +25,7 @@ class CategoryController extends Controller
         try {
             $data = Category::create($attr);
             if($data){
-                return to_route('categories.index')->with('message', 'Category successfully created');
+                return to_route('categories.index')->with(key:'message', value:'Category successfully created');
             }        
         } catch(\Throwable $th) {
             throw $th;

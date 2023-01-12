@@ -24,21 +24,25 @@
                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="each">
                         <thead>
                             <tr role="row">
-                                <th class="sorting_asc"tabindex = "0" aria-controls="example2" rowspan="1" colspan="1"></th>
-                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1"></th>
-                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1"></th>
-                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1"></th>
-                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1"></th>
+                                <th class="sorting_asc"tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browsers popularity: activate to sort column descending">ID</th>
+                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Category name: activate to sort column ascending">Category name</th>
+                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Status</th>
+                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Timestamp: activate to sort column ascending">Created at</th>
+                                <th class="sorting" tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-label="edit or delete: activate to sort column ascending">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($categories as $category)
                             <tr role = "row"class="odd">
-                                <td class="sorting1">Database</td>
-                                <td>Lorem, ipsum dolor.</td>
-                                <td>Lorem, ipsum</td>
-                                <td>Lorem</td>
-                                <td>1</td>
+                                <td class="sorting_1">#{{ $category->id }}</td>
+                                <td>{{ $category->category_name }}</td>
+                                <td>{{ $category->status }}</td>
+                                <td>{{$category->created_at}}</td>
+                                <td>Edit/Del</td>
                             </tr>
+                            @empty
+
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
