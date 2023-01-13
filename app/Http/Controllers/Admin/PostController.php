@@ -61,6 +61,7 @@ class PostController extends Controller
                 ->where('posts.status', true)
                 ->join('categories', 'categories.id', 'posts.category_id')
                 ->select('posts.*', 'categories.category_name as category_name')
+                ->orderByDesc('id')
                 ->get();
     }
 

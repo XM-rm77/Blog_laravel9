@@ -55,8 +55,9 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-
+      
       @yield('content')
+      
 
     </section>
     <!-- /.content -->
