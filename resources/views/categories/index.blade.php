@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="each">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2">
                         <thead>
                             <tr role="row">
                                 <th class="sorting_asc"tabindex = "0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browsers popularity: activate to sort column descending">ID</th>
@@ -36,9 +36,20 @@
                             <tr role = "row"class="odd">
                                 <td class="sorting_1">#{{ $category->id }}</td>
                                 <td>{{ $category->category_name }}</td>
-                                <td>{{ $category->status }}</td>
+                                <td>
+                                    @if ($category->status == true)
+                                        <span class="label label-success">Active</span>
+                                    @elseif($category->status == false)
+                                        <span class="label label-danger">Block</span>
+                                    @endif
+                                </td>
                                 <td>{{$category->created_at}}</td>
-                                <td>Edit/Del</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary" type="button" onclick="editCategory({{ $category->id }})">Edit</button>
+                                        <a href="{{route('category.delete', $category->id)}}" class="btn btn-danger">Del</a>
+                                    </div>
+                                </td>
                             </tr>
                             @empty
 
@@ -51,7 +62,7 @@
     </div>
 </div>
 
-<div class="modal fade" id = "category-add">
+<div class="modal fade" id ="category-add">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -61,17 +72,17 @@
             </div>
             
             @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
             <div class="modal-body">
-                <form role = "form" action="{{route('categories.store')}}" method="POST">
+                <form role = "form" action="{{route('category.store')}}" method="POST">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
@@ -94,14 +105,73 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="category-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Edit category</h4>
+            </div>
+            @include('flash_message')
+            <div class="modal-body">
+               <form role="form" action="{{route('category.update')}}" method="POST">
+                    <input type="hidden" id="category_id" name="category_id">
+                    @csrf
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="category_edit">Category name</label>
+                            <input type="text" class="form-control" name="category_name" id="cateegory_edit" placeholder="Enter the name">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="status" name="status">
+                                <option value="1">Active</option>
+                                <option value="0">Block</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('extra_script')
 
 <script type="text/javascript">
-    if(count($errors) > 0)
+    @if(count($errors) > 0)
         $('#category-add').modal('show');
-    endif
+    @endif
+</script>
+<script>
+    function editCategory(id){
+        var category_id = id;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:'POST',
+            url:'{{ route("category.update") }}',
+            data:{
+                id:category_id
+            },
+            success:function(data) {
+                $("#category_id").val(data.id);
+                $("#category_edit").val(data.category_name);
+                $("#status").val(data.status);
+                $("#category-edit").modal('show');
+            }
+        });
+    }
 </script>
 
 @endpush
