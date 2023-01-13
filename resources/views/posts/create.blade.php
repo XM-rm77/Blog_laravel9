@@ -19,7 +19,7 @@
                     <label for="post">Category</label>
                     <select name="category_id" class="form-control">
                         <option value="" selected>Select Category</option>
-                        @forelse(cache()->get('categories') as $category)
+                        @forelse($categories as $category)
                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                         @empty
 
