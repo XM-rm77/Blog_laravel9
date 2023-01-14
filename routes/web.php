@@ -49,4 +49,6 @@ Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('posts', PostsController::class);
 
+Route::get('/posts/user/{user}', [PostsController::class, 'userPost']);
+
 Route::resource('comments', CommentsController::class);

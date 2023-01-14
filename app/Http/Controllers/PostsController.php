@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+
 use App\Models\Analytic;
 
 use Illuminate\Http\Request;
@@ -76,5 +78,13 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('/posts');
+    }
+
+    public function userPost(User $user)
+    {
+        $posts = Post::where('user_id', $user->id)->paginate(10);
+        return view('users.posts.index', [
+            'posts' => $posts,
+        ]);
     }
 }
