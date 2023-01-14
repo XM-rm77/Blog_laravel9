@@ -5,7 +5,7 @@
 
 <!-- Section: Design Block -->
 <section class="mb-40">
-    <nav class="navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between">
+    <nav class="navbar navbar-expand-lg shadow-md py-2 relative flex items-center w-full justify-between" style="background: #367fa9;">
         <div class="px-6 w-full flex flex-wrap items-center justify-between">
             <div class="navbar-collapse collapse grow items-center" id="navbarSupportedContentY">
                 <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
@@ -27,13 +27,13 @@
         </div>
     </nav>
     <div class="flex m-5 justify-center">
-        <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <div class="font-bold text-center text-2xl mr-10">Login</div>
+        <div style="background: #367fa9;" class="block p-6 border border-gray-200 rounded-lg shadow-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div class="font-bold text-white text-center text-2xl mr-10">Login</div>
             <div class="">
                 <form action="{{ route('login.post') }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <label for="email_address" class="col-md-4 col-form-label text-md-right font-bold">Email</label>
+                        <label for="email_address" class="col-md-4 col-form-label text-md-right font-bold text-white">Email</label>
                         <div class="col-md-10">
                             <input type="text" id="email_address" class="rounded-lg form-control" name="email" required autofocus>
                             @if ($errors->has('email'))
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right font-bold">Password</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right font-bold text-white">Password</label>
                         <div class="col-md-10">
                             <input type="password" id="password" class="rounded-lg form-control" name="password" required>
                             @if ($errors->has('password'))
@@ -63,5 +63,9 @@
     </div>
 
 </section>
+<div class="wrapper text-center">
+    @include('inc.footer')
+
+</div>
 
 @endsection

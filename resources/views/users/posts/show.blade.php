@@ -16,6 +16,7 @@
                 <h4 class="font-bold text-2xl mt-5 text-center">Posted By: {{ ucfirst($post->user->name) }}</h4>
                 <h4 class="font-bold text-2xl mt-5 text-center">Posted On: {{ ucfirst($post->created_at->format('d M Y')) }}</h4>
                 <p class="text-gray-700 mt-2">{!! $post->description !!}</p>
+                <image src="{{asset('storage/'.$post->image)}}" style="width: 100%; height: auto;"></image>
                 <h4 class="font-bold text-xl my-3">Discussion Forum:</h4>
 
                 @foreach($comments as $comment)

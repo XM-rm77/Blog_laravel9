@@ -15,12 +15,16 @@
     <div class="box box-primary" style="width: 20rem; margin-right: 10px">
         <img class="box-body" src="{{asset('storage/'.$value->image)}}" style="text-align:center; margin: 0 auto;" alt="Image" weight="100px" height="100px">
         <div class="box-body">
-            <h5 class="card-title">{{ $value->title }}</h5>
-            <p class="card-text">{{ $value->description }}</p>
+            <a href="{{ route('posts.show', $value->id)}}">
+                <h5 class="card-title"><b>{{ $value->title }}</b></h5>
+            </a>
             <a href="{{ route('posts.show', $value->id)}}" class="btn btn-primary">View</a>
         </div>
     </div>
     @endforeach
+</div>
+<div class="col-12 pt-2 justify-content-center items-center d-flex mt-10">
+    {!! $posts->links() !!}
 </div>
 
 

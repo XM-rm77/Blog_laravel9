@@ -65,7 +65,7 @@
                                 <td>{{$post->created_at}}</td>
                                 <td>
                                     <div class=" btn-group">
-                                        <a href="#" class="btn btn-primary">Edit</a>
+                                        <a href="{{route('posts.edit', $post->id)}}" class="btn btn-primary">Edit</a>
                                         <a href="{{route('post.delete', $post->id)}}" class="btn btn-danger">Del</a>
                                     </div>
                                 </td>

@@ -33,7 +33,7 @@ class PostController extends Controller
         ]);
         try {
             if ($request->hasFile('image')) {
-                $image = $request->file('image')->store('public');
+                $image = $request->file('image')->store('posts', 'public');
             }
             Post::create([
                 'title' => $request->title,
