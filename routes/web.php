@@ -4,11 +4,17 @@ use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'home');
 });
+
+
 
 Route::group(['prefix' => 'admin/dashboard'], function () {
 
@@ -34,3 +40,13 @@ Route::group(['prefix' => 'admin/dashboard'], function () {
         });
     });
 });
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
+Route::get('dashboard', [AuthController::class, 'dashboard']);
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::resource('posts', PostsController::class);
+
+Route::resource('comments', CommentsController::class);

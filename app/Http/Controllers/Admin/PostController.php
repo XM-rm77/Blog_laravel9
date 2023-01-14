@@ -18,9 +18,6 @@ class PostController extends Controller
 
     public function create()
     {
-        // cache()->remember('categories', 60*60, function(){
-        //     return DB::table('categories')->where('status', true)->get();
-        // });
         $categories = DB::table('categories')->where('status', true)->get();
         return view('posts.create', compact('categories'));
     }
@@ -43,7 +40,8 @@ class PostController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'image' => isset($image) ? $image : 'dummy.jpg',
-                'status' => $request->status
+                'status' => $request->status,
+                'user_id' => auth()->user()->id
             ]);
 
             return to_route('post.index')->with('message', 'post created');
