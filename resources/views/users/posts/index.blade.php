@@ -13,7 +13,7 @@
 <div class="flex flex-wrap" style="display: flex; flex-wrap: wrap">
     @foreach($posts as $key => $value)
     <div class="box box-primary" style="width: 20rem; margin-right: 10px">
-        <img class="box-body" src="{{asset('storage/'.$value->image)}}" style="text-align:center; margin: 0 auto;" alt="Image" weight="100px" height="100px">
+        <img class="box-body" src="{{asset('storage/'.$value->image)}}" style="text-align:center; margin: 0 auto; width: 100%; height: auto" alt="Image" weight="100px" height="100px">
         <div class="box-body">
             <a href="{{ route('posts.show', $value->id)}}">
                 <h5 class="card-title"><b>{{ $value->title }}</b></h5>
