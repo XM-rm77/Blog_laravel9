@@ -55,5 +55,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @include('inc.scripts')
 
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+<script type="text/javascript">
+  $("#save-comment").on('click', function() {
+    var body = $("#comment_body").val();
+    var _post_id = $("#post_id").val();
+    // Run Ajax
+    $.ajax({
+      url: "{{ route('comments.store')}}",
+      type: "post",
+      dataType: 'json',
+      data: {
+        body: body,
+        post_id: _post_id,
+        _token: "{{ csrf_token() }}"
+      },
+      beforeSend: function() {},
+      success: function(res) {}
+    });
+    window.location.reload();
+
+  });
+</script>
 
 </html>

@@ -22,6 +22,7 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         $post = Post::find($request['post_id']);
+        $comments = $post->comments;
         $request->validate([
             'body' => 'required',
         ]);
@@ -31,7 +32,10 @@ class CommentsController extends Controller
         if ($post->user_id !== auth()->user()->id) {
             $this->tiggerNotification($post->user_id,  auth()->user()->name . " made a comment on your post.");
         }
-        return back();
+        return view('users.posts.show', [
+            'post' => $post,
+            'comments' => $comments
+        ]);
     }
 
     public function tiggerNotification($to_user_id, $message)
