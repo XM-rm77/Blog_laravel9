@@ -33,7 +33,7 @@ class PostsController extends Controller
     {
         $post = Post::create([
             'title' => $request->title,
-            'body' => $request->body,
+            'description' => $request->description,
             'user_id' => auth()->user()->id
         ]);
         return redirect('posts/' . $post->id);
@@ -42,10 +42,9 @@ class PostsController extends Controller
     // show view for particular post
     public function show(Post $post)
     {
-        // for every view we are increment the count view
-        // $analytic = Analytic::firstOrNew(['post_id' =>  $post->id]);
-        // $analytic->view_count += 1;
-        // $analytic->save();
+        $analytic = Analytic::firstOrNew(['post_id' =>  $post->id]);
+        $analytic->view_count += 1;
+        $analytic->save();
         $comments = $post->comments;
         return view('users.posts.show', [
             'post' => $post,
@@ -66,7 +65,7 @@ class PostsController extends Controller
     {
         $post->update([
             'title' => $request->title,
-            'body' => $request->body
+            'description' => $request->description
         ]);
 
         return redirect('posts/' . $post->id);

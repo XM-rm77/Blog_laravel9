@@ -6,9 +6,9 @@
 
 <a href="/posts" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Go back</a>
 <div class="card">
-    <form action="" method="POST">
+    <form action="{{route('posts.update', $post)}}" method="post">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <div class="row">
             <div class="control-group col-12 mt-5">
                 <label class="font-bold" for="title">Post Title</label>

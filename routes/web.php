@@ -8,6 +8,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AnalyticController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,5 @@ Route::get('/posts/user/{user}', [PostsController::class, 'userPost']);
 
 Route::resource('comments', CommentsController::class);
 Route::resource('notifications', NotificationController::class);
+Route::resource('analytics', AnalyticController::class);
+Route::get("/view-analytics", [AnalyticController::class, 'showAnalytics']);

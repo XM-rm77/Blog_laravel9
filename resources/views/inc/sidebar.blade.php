@@ -34,7 +34,7 @@
       <li class="active"><a href="/notifications">
           <i class="fa fa-bell"></i> <span>Notifications</span></a>
       </li>
-      <li class="active"><a href="/analytics">
+      <li class="active"><a href="/view-analytics">
           <i class="fa fa-bar-chart"></i> <span>Anlaytics</span></a>
       </li>
 
