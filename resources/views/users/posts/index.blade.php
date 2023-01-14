@@ -13,7 +13,7 @@
 <div class="flex flex-wrap" style="display: flex; flex-wrap: wrap">
     @foreach($posts as $key => $value)
     <div class="box box-primary" style="width: 20rem; margin-right: 10px">
-        <img class="box-img" src="{{$value->image}}" alt="Image">
+        <img class="box-body" src="{{asset('storage/'.$value->image)}}" style="text-align:center; margin: 0 auto;" alt="Image" weight="100px" height="100px">
         <div class="box-body">
             <h5 class="card-title">{{ $value->title }}</h5>
             <p class="card-text">{{ $value->description }}</p>

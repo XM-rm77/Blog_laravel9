@@ -34,9 +34,11 @@
       <li class="active"><a href="/notifications">
           <i class="fa fa-bell"></i> <span>Notifications</span></a>
       </li>
+      @if (Auth::user()->role == "admin")
       <li class="active"><a href="/view-analytics">
           <i class="fa fa-bar-chart"></i> <span>Anlaytics</span></a>
       </li>
+      @endif
 
       @if (Auth::user()->role == "admin")
       <li class="active"><a href="{{route('post.index')}}">
