@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\NotificationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +53,4 @@ Route::resource('posts', PostsController::class);
 Route::get('/posts/user/{user}', [PostsController::class, 'userPost']);
 
 Route::resource('comments', CommentsController::class);
+Route::resource('notifications', NotificationController::class);

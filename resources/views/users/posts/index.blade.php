@@ -10,11 +10,11 @@
         </a>
     </div>
 </div>
-<div class="flex flex-wrap" style="display: flex">
+<div class="flex flex-wrap" style="display: flex; flex-wrap: wrap">
     @foreach($posts as $key => $value)
-    <div class="card" style="width: 30rem;">
-        <img class="card-img-top" src="{{$value->image}}" alt="Image">
-        <div class="card-body">
+    <div class="box box-primary" style="width: 20rem; margin-right: 10px">
+        <img class="box-img" src="{{$value->image}}" alt="Image">
+        <div class="box-body">
             <h5 class="card-title">{{ $value->title }}</h5>
             <p class="card-text">{{ $value->description }}</p>
             <a href="{{ route('posts.show', $value->id)}}" class="btn btn-primary">View</a>
